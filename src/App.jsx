@@ -1,23 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
+import { useState } from 'react';
+
 import {
-  Experimental_CssVarsProvider as CssVarsProvider,
-  experimental_extendTheme as extendTheme,
   useColorScheme,
-} from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
-import Box from '@mui/material/Box'
-import LightModeIcon from '@mui/icons-material/LightMode'
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
-import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness'
+  useMediaQuery,
+  Typography,
+  Button,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Box,
+  Container,
+} from '@mui/material';
+
+import {
+  LightMode as LightModeIcon,
+  DarkModeOutlined as DarkModeOutlinedIcon,
+  SettingsBrightness as SettingsBrightnessIcon,
+} from '@mui/icons-material';
+
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
@@ -51,7 +52,6 @@ function ModeSelect() {
 
         <MenuItem value="system">
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-
             <SettingsBrightnessIcon fontSize='small' /> System
           </Box>
         </MenuItem>
@@ -61,39 +61,40 @@ function ModeSelect() {
   );
 }
 
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  return (
-    <Button
-      onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light');
-      }}
-    >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
-  );
-}
-
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <ModeSelect />
-      <hr />
-      <ModeToggle />
-      <hr />
-      <div>ducsang404</div>
-      <Typography variant='body2' color="text.secondary">Text Typography</Typography>
+    <Container disableGutters maxWidth={false} sx={{ height: '100vh', backgroundColor: 'primary.main' }}>
+      <Box sx={{
+        backgroundColor: 'primary.light',
+        width: '100%',
+        height: (theme) => theme.trello.appBarHeight,
+        display: 'flex',
+        alignItems: 'center'
+      }}>
+        <ModeSelect />
+      </Box>
 
-      <Button variant='text'>Text</Button>
-      <Button variant='contained'>Contained</Button>
-      <Button variant='outlined'>Outlined</Button>
+      <Box sx={{
+        backgroundColor: 'primary.dark',
+        width: '100%',
+        height: (theme) => theme.trello.boardBarHeight,
+        display: 'flex',
+        alignItems: 'center'
+      }}>
+        Board Bar
+      </Box>
 
-    </>
+      <Box sx={{
+        backgroundColor: 'primary.main',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        height: (theme) => `calc(100vh - ${theme.trello.appBarHeight} - ${theme.trello.boardBarHeight})`,
+      }}>
+        Board Content
+      </Box>
+    </Container>
   )
 }
 
