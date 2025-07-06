@@ -11,7 +11,7 @@ function BoardBar() {
       display: 'flex',
       alignItems: 'center'
     }}>
-            Board Bar
+      Board Bar
     </Box>
   )
 }
