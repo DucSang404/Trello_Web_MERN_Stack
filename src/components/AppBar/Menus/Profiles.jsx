@@ -35,7 +35,7 @@ function Profiles() {
           aria-expanded={open ? 'true' : undefined}
         >
           <Avatar
-            sx={{ width: 32, height: 32 }}
+            sx={{ width: 36, height: 36 }}
             src='https://i.pinimg.com/736x/79/58/36/79583600e946d44df35077be106c4c21.jpg'>
           </Avatar>
         </IconButton>
@@ -63,19 +63,19 @@ function Profiles() {
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-                    Add another account
+          Add another account
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-                    Settings
+          Settings
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-                    Logout
+          Logout
         </MenuItem>
       </Menu>
     </Box>

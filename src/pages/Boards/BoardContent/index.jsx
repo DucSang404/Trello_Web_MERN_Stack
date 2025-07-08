@@ -5,7 +5,9 @@ import {
 function BoardContent() {
   return (
     <Box sx={{
-      backgroundColor: 'primary.main',
+      bgcolor: (theme) => (
+        theme.palette.mode === 'dark' ? '#512da8' : '#42a5f5'
+      ),
       width: '100%',
       display: 'flex',
       alignItems: 'center',
