@@ -39,8 +39,7 @@ function BoardBar() {
       overflowX: 'auto',
       bgcolor: (theme) => (
         theme.palette.mode === 'dark' ? '#512da8' : '#42a5f5'
-      ),
-      borderBottom: '1px solid rgb(13, 142, 216)'
+      )
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip
