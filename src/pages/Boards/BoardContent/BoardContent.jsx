@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from 'react'
 import Column from './ListColumns/Column/Column.jsx'
 import Cards from './ListColumns/Column/ListCards/Cards/Cards.jsx'
+import { cloneDeep } from 'lodash'
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: 'ACTIVE_DRAG_ITEM_TYPE_COLUMN',
@@ -31,6 +32,10 @@ function BoardContent({ board }) {
     setOrderedColumnsState(mapOrder(board?.columns, board?.columnOrderIds, '_id'))
   }, [board])
 
+  const findColumnByCardId = (cardId) => {
+    return orderedColumnsState.find(column => column?.cards?.map(card => card._id)?.includes(cardId))
+  }
+
   const handleDragStart = (event) => {
     console.log('handleDragStart', event)
     setActiveDragItemId(event?.active?.id)
@@ -38,11 +43,72 @@ function BoardContent({ board }) {
     setActiveDragItemData(event?.active?.data?.current)
   }
 
+  const handleDragOver = (event) => {
+    // console.log('handleDragOver', event)
+
+    if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) return
+
+    const { active, over } = event
+    if (!active | !over) return
+    // Card đang được kéo
+    const { id: activeDraggingCardId, data: { current: activeDraggingCardData } } = active
+    // Card đang tương tác trên hoặc dưới so với card được kéo ở trên
+    const { id: overCardId } = over
+
+    // Find 2 column by card Id
+    const activeColumn = findColumnByCardId(activeDraggingCardId)
+    const overColumn = findColumnByCardId(overCardId)
+
+    if (!activeColumn | !overColumn) return
+
+    if (activeColumn._id !== overColumn._id) {
+      setOrderedColumnsState(prevColumns => {
+        const overCardIndex = overColumn?.cards?.findIndex(card => card._id === overCardId)
+
+        let newCardIndex
+        const isBelowOverItem = active.rect.current.translated &&
+          active.rect.current.translated.top > over.rect.top + over.rect.height
+
+        const modifier = isBelowOverItem ? 1 : 0
+
+        newCardIndex = overCardIndex >= 0 ? overCardIndex + modifier : overColumn?.cards?.length + 1
+
+        const nextColumns = cloneDeep(prevColumns)
+        const nextActiveColumn = nextColumns.find(column => column._id === activeColumn._id)
+        const nextOverColumn = nextColumns.find(column => column._id === overColumn._id)
+
+        if (nextActiveColumn) {
+          // Xóa card đang kéo ra khỏi column active
+          nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
+          // Cập nhật card order
+          nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
+        }
+
+        if (nextOverColumn) {
+          // Kiểm tra card đang kéo có tồn tại trong overColumn chưa.
+          nextOverColumn.cards = nextOverColumn.cards.filter(card => card._id !== activeDraggingCardId)
+          // Thêm card vào vị trí mới
+          nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, activeDraggingCardData)
+          // Cập nhật card order
+          nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
+        }
+        console.log('nextColumns', nextColumns)
+        return nextColumns
+      })
+    }
+  }
+
+
   const handleDragEnd = (event) => {
-    console.log('handleDragEnd', event)
+    // console.log('handleDragEnd', event)
+
+    if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD) {
+      // console.log('Action drag card')
+      return
+    }
     const { active, over } = event
 
-    if (!over) return
+    if (!active | !over) return
 
     if (active.id !== over.id) {
       const oldIndex = orderedColumnsState.findIndex(c => c._id === active.id)
@@ -68,6 +134,7 @@ function BoardContent({ board }) {
   return (
     <DndContext
       onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
       sensors={sensors}
     >

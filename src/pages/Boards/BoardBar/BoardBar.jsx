@@ -113,22 +113,22 @@ function BoardBar(props) {
           }}
         >
           <Tooltip>
-            <Avatar alt="user_1" src="https://i.pinimg.com/originals/1a/0b/75/1a0b75a7ec05a7505c5a3d589f10d6ae.jpg" />
+            <Avatar alt="user_1" src="https://cdn2.fptshop.com.vn/unsafe/800x0/avatar_anime_nam_cute_14_60037b48e5.jpg" />
           </Tooltip>
           <Tooltip>
-            <Avatar alt="user_2" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" />
+            <Avatar alt="user_2" src="https://jbagy.me/wp-content/uploads/2025/03/Hinh-anh-avatar-anime-nu-cute-4.jpg" />
           </Tooltip>
           <Tooltip>
-            <Avatar alt="user_3" src="https://i.pinimg.com/originals/34/2f/74/342f74179207e585e143baacadd12436.jpg" />
+            <Avatar alt="user_3" src="https://jbagy.me/wp-content/uploads/2025/03/Hinh-anh-avatar-nam-anime-1.jpg" />
           </Tooltip>
           <Tooltip>
-            <Avatar alt="user_4" src="https://images.unsplash.com/photo-1502767089025-6572583495b9" />
+            <Avatar alt="user_4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAx5DSZGVrKexuTPAoLyHQTQOX_i8-swZ6_g&s" />
           </Tooltip>
           <Tooltip>
-            <Avatar alt="user_5" src="https://i.pinimg.com/originals/9c/66/f4/9c66f4c6fd30d9f8e649ba9b2ff5dc91.jpg" />
+            <Avatar alt="user_5" src="https://jbagy.me/wp-content/uploads/2025/03/Hinh-anh-avatar-anime-nu-cute-5.jpg" />
           </Tooltip>
           <Tooltip>
-            <Avatar alt="user_6" src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce" />
+            <Avatar alt="user_6" src="https://i.pinimg.com/564x/93/75/ae/9375aef3b0ea35e0cf4ca12862bb5fef.jpg" />
           </Tooltip>
           <Tooltip>
             <Avatar alt="user_7" src="https://i.pinimg.com/originals/d5/38/b5/d538b58c74c12bc8aa658fc42d1e28df.jpg" />
