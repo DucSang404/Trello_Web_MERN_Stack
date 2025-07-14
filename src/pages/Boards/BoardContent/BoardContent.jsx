@@ -22,7 +22,8 @@ import {
 import { useEffect, useState, useCallback, useRef } from 'react'
 import Column from './ListColumns/Column/Column.jsx'
 import Cards from './ListColumns/Column/ListCards/Cards/Cards.jsx'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, isEmpty } from 'lodash'
+import { generatePlaceholderCard } from '~/utils/formatter.js'
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: 'ACTIVE_DRAG_ITEM_TYPE_COLUMN',
@@ -81,6 +82,12 @@ function BoardContent({ board }) {
       if (nextActiveColumn) {
         // Xóa card đang kéo ra khỏi column active
         nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
+
+        // Thêm Placeholder Card nếu Column rỗng: bị kết hết card đi, không còn cái nào
+        if (isEmpty(nextActiveColumn.cards)) {
+          nextActiveColumn.cards = [generatePlaceholderCard(nextActiveColumn)]
+        }
+
         // Cập nhật card order
         nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id)
       }
@@ -94,9 +101,14 @@ function BoardContent({ board }) {
         }
         // Thêm card vào vị trí mới
         nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
+
+        // Xóa place holdercard nếu đang tồn tại
+        nextOverColumn.cards = nextOverColumn.cards.filter(card => !card.FE_PlaceholderCard)
+
         // Cập nhật card order
         nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id)
       }
+      console.log('nextOverColumn', nextOverColumn)
       return nextColumns
     })
   }
