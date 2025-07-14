@@ -3,7 +3,7 @@ import ListColumns from './ListColumns/ListColumns.jsx'
 import { mapOrder } from '~/utils/sorts.js'
 import {
   DndContext,
-  PointerSensor,
+  // PointerSensor,
   useSensor,
   useSensors,
   MouseSensor,
@@ -12,9 +12,9 @@ import {
   defaultDropAnimationSideEffects,
   closestCorners,
   pointerWithin,
-  rectIntersection,
-  getFirstCollision,
-  closestCenter
+  // rectIntersection,
+  getFirstCollision
+  // closestCenter
 } from '@dnd-kit/core'
 import {
   arrayMove
@@ -209,18 +209,20 @@ function BoardContent({ board }) {
     // Tìm các điểm giao nhau, va chạm với con trỏ
     const pointerIntersection = pointerWithin(args)
 
-    const intersections = !!pointerIntersection?.length > 0
-      ? pointerIntersection
-      : rectIntersection(args)
+    if (!pointerIntersection?.length) return
+
+    // const intersections = !!pointerIntersection?.length > 0
+    //   ? pointerIntersection
+    //   : rectIntersection(args)
 
     // Find first overId in intersections
-    let overId = getFirstCollision(intersections, 'id')
+    let overId = getFirstCollision(pointerIntersection, 'id')
     // console.log('overId before', overId)
     if (overId) {
       const checkColumn = orderedColumnsState.find(column => column._id === overId)
 
       if (checkColumn) {
-        overId = closestCenter({
+        overId = closestCorners({
           ...args,
           droppableContainers: args.droppableContainers.filter(container => {
             return (container.id !== overId) && (checkColumn?.cardOrderIds?.includes(container.id))
