@@ -14,10 +14,9 @@ const createNew = async (req, res, next) => {
   })
 
   try {
-    console.log('req.body:', req.body)
     await correctCondition.validateAsync(req.body, { abortEarly: false })
-    res.status(StatusCodes.CREATED).json({ message: 'POST VALIDATION' })
-
+    // next step after middleware
+    next()
   } catch (error) {
     console.log(error)
     res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
