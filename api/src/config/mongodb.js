@@ -14,7 +14,6 @@ const mongoClientInstance = new MongoClient(env.MONGODB_URI, {
 
 // Connect to database
 export const CONNECT_DB = async () => {
-  console.log(process.env.MONGODB_URI)
   await mongoClientInstance.connect()
 
   // Get database name
