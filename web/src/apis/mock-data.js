@@ -24,7 +24,7 @@ export const mockData = {
             columnId: 'column-id-01',
             title: 'Title of card 01',
             description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
-            cover: 'https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/475981187_1014860664001205_2026700215011644250_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHljded89cvD9GTLnR0A81UkYLd7aAskWWRgt3toCyRZTgiTzaatv5N3sPmhuTy-HHebWA4t9Ys-Yd0BN3TQINE&_nc_ohc=GdqhDuiP6qsQ7kNvwEFKwpX&_nc_oc=Adlr4-0Hw1tMvHzkAYMxAs49r0i2WAS2eo5Ko6U6Y69813WvFcGoHwyMvCb9OPtSzvQ&_nc_zt=23&_nc_ht=scontent.fdad3-5.fna&_nc_gid=Nw3xczmO-Gao9RMsbIvf7Q&oh=00_AfTNNNZcarxxqClm7eof_lDhoux4SHy97fuXnwBGCkmDZA&oe=687B076F',
+            cover: 'https://static.vecteezy.com/system/resources/previews/004/579/319/non_2x/the-team-is-designing-the-app-and-launching-it-on-a-rocket-free-vector.jpg',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03']
