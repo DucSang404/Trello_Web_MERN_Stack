@@ -24,12 +24,22 @@ export const mockData = {
             columnId: 'column-id-01',
             title: 'Title of card 01',
             description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
-            cover: 'https://static.vecteezy.com/system/resources/previews/004/579/319/non_2x/the-team-is-designing-the-app-and-launching-it-on-a-rocket-free-vector.jpg',
+            cover: 'https://img.freepik.com/free-vector/gradient-intranet-illustration_23-2149368727.jpg',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03']
           },
-          { _id: 'card-id-02', boardId: 'board-id-01', columnId: 'column-id-01', title: 'Title of card 02', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
+          {
+            _id: 'card-id-02',
+            boardId: 'board-id-01',
+            columnId: 'column-id-01',
+            title: 'Title of card 02',
+            description: null,
+            cover: 'https://static.vecteezy.com/system/resources/previews/004/579/319/non_2x/the-team-is-designing-the-app-and-launching-it-on-a-rocket-free-vector.jpg',
+            memberIds: [],
+            comments: [],
+            attachments: []
+          },
           { _id: 'card-id-03', boardId: 'board-id-01', columnId: 'column-id-01', title: 'Title of card 03', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
           { _id: 'card-id-04', boardId: 'board-id-01', columnId: 'column-id-01', title: 'Title of card 04', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
           { _id: 'card-id-05', boardId: 'board-id-01', columnId: 'column-id-01', title: 'Title of card 05', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
@@ -43,7 +53,17 @@ export const mockData = {
         title: 'Inprogress Column 02',
         cardOrderIds: ['card-id-08', 'card-id-09', 'card-id-10'],
         cards: [
-          { _id: 'card-id-08', boardId: 'board-id-01', columnId: 'column-id-02', title: 'Title of card 08', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
+          {
+            _id: 'card-id-08',
+            boardId: 'board-id-01',
+            columnId: 'column-id-02',
+            title: 'Title of card 08',
+            description: null,
+            cover: 'https://static.vecteezy.com/system/resources/thumbnails/015/393/304/small_2x/it-specialists-administrate-cloud-service-data-storage-hosting-platform-big-data-processing-transferring-online-computing-technology-software-solutions-to-share-informations-on-digital-network-vector.jpg',
+            memberIds: [],
+            comments: [],
+            attachments: []
+          },
           { _id: 'card-id-09', boardId: 'board-id-01', columnId: 'column-id-02', title: 'Title of card 09', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
           { _id: 'card-id-10', boardId: 'board-id-01', columnId: 'column-id-02', title: 'Title of card 10', description: null, cover: null, memberIds: [], comments: [], attachments: [] }
         ]
