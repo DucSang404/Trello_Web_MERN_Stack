@@ -26,6 +26,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import theme from '~/theme'
+import { toast } from 'react-toastify'
 
 function Column({ column }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
@@ -56,7 +57,7 @@ function Column({ column }) {
 
   const addNewCard = () => {
     if (!newCardTitle) {
-      console.error('Please enter Column Title!')
+      toast.error('Please enter Card Title!')
       return
     }
     console.log('newCardTitle', newCardTitle)
