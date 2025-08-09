@@ -31,7 +31,7 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD'
 }
 
-function BoardContent({ board, createNewColumn, createNewCard }) {
+function BoardContent({ board, createNewColumn, createNewCard, moveColumn }) {
   // Yêu cầu chuột di chuyển 10px mới thực hiện event
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
   const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } })
@@ -152,6 +152,7 @@ function BoardContent({ board, createNewColumn, createNewCard }) {
 
     if (!active | !over) return
 
+    // Keo tha card
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD) {
       // Card đang được kéo
       const { id: activeDraggingCardId, data: { current: activeDraggingCardData } } = active
@@ -188,6 +189,8 @@ function BoardContent({ board, createNewColumn, createNewCard }) {
       }
     }
 
+
+    // Keo tha column
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
       if (active.id !== over.id) {
         const oldColumnIndex = orderedColumnsState.findIndex(c => c._id === active.id)
@@ -195,9 +198,7 @@ function BoardContent({ board, createNewColumn, createNewCard }) {
 
         const dndOrderedColumns = arrayMove(orderedColumnsState, oldColumnIndex, newColumnIndex)
 
-        // const dndOrderedColumnsIds = dndOrderedColumns.map(c => c._id)
-        // console.log('dndOrderedColumns:', dndOrderedColumns)
-        // console.log('dndOrderedColumnsIds:', dndOrderedColumnsIds)
+        moveColumn(dndOrderedColumns)
         setOrderedColumnsState(dndOrderedColumns)
       }
     }

@@ -13,10 +13,8 @@ const createNew = async (reqBody) => {
     }
 
     const createdBoard = await boardModel.createNew(newBoard)
-    console.log('createdBoard', createdBoard)
 
     const getNewBoard = await boardModel.findOneById(createdBoard.insertedId)
-    console.log('getNewBoard', getNewBoard)
     return getNewBoard
   } catch (error) { throw error }
 }
@@ -40,7 +38,19 @@ const getDetails = async (boardId) => {
   } catch (error) { throw error }
 }
 
+const update = async (boardId, reqBody) => {
+  try {
+    const updateData = {
+      ...reqBody,
+      updateAt: Date.now()
+    }
+    const updatedBoard = await boardModel.update(boardId, updateData)
+    return updatedBoard
+  } catch (error) { throw error }
+}
+
 export const boardService = {
   createNew,
-  getDetails
+  getDetails,
+  update
 }
